@@ -1,6 +1,6 @@
 services:
   db:
-    image: ghcr.io/hiddewie/openrailwaymap-import-db:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-import-db:latest
     build:
       context: db
     ports:
@@ -20,11 +20,11 @@ services:
       start_period: 5m
 
   import:
-    image: ghcr.io/hiddewie/openrailwaymap-import:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-import:latest
     build:
       dockerfile: import/Dockerfile
       cache_from:
-        - ghcr.io/hiddewie/openrailwaymap-import:latest
+        - ghcr.io/jonasfranz/openrailwaymap-import:latest
     command:
       - import
     depends_on:
@@ -41,7 +41,7 @@ services:
       - OSM2PGSQL_DATAFILE
 
   data:
-    image: ghcr.io/hiddewie/openrailwaymap-data:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-data:latest
     build:
       context: data
       dockerfile: Dockerfile
@@ -50,7 +50,7 @@ services:
       - inf
 
   martin:
-    image: ghcr.io/hiddewie/openrailwaymap-martin:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-martin:latest
     build:
       dockerfile: martin.Dockerfile
     depends_on:
@@ -71,7 +71,7 @@ services:
           path: symbols
 
   martin-proxy:
-    image: ghcr.io/hiddewie/openrailwaymap-proxy:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-proxy:latest
     build:
       dockerfile: proxy.Dockerfile
     ports:
@@ -99,7 +99,7 @@ services:
           path: features
 
   api:
-    image: ghcr.io/hiddewie/openrailwaymap-api:latest
+    image: ghcr.io/jonasfranz/openrailwaymap-api:latest
     build:
       context: api
     environment:

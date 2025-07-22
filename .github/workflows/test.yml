@@ -82,8 +82,8 @@ jobs:
         run: |
           docker compose stop db
           DB_CONTAINER_ID="$(docker compose ps --all --format json | jq -r 'select(.Service == "db") | .ID')"
-          docker commit "$DB_CONTAINER_ID" ghcr.io/hiddewie/openrailwaymap-import-db:latest
-          docker save ghcr.io/hiddewie/openrailwaymap-import-db:latest > ${{ runner.temp }}/openrailwaymap-import-db.tar
+          docker commit "$DB_CONTAINER_ID" ghcr.io/jonasfranz/openrailwaymap-import-db:latest
+          docker save ghcr.io/jonasfranz/openrailwaymap-import-db:latest > ${{ runner.temp }}/openrailwaymap-import-db.tar
 
       - name: Upload database artifact
         uses: actions/upload-artifact@v4
@@ -125,7 +125,7 @@ jobs:
 
       - name: Save API image
         run: |
-          docker save ghcr.io/hiddewie/openrailwaymap-api:latest > ${{ runner.temp }}/openrailwaymap-api.tar
+          docker save ghcr.io/jonasfranz/openrailwaymap-api:latest > ${{ runner.temp }}/openrailwaymap-api.tar
 
       - name: Upload API artifact
         uses: actions/upload-artifact@v4
