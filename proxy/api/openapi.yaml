@@ -10,7 +10,6 @@ info:
 
 servers:
   - url: https://trackmap.jfdev.de
-  - url: https://openrailwaymap.app
   - url: http://localhost:8000
 
 tags:
@@ -29,6 +28,14 @@ paths:
       operationId: status
       description: Status endpoint
       summary: Status endpoint
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "OK"
       tags:
         - status
 
